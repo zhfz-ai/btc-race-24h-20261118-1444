@@ -29,7 +29,11 @@
 //   has never traded — that is the exact code the backtest swept and the
 //   gates were checked against. A re-armed variant (loosening after every
 //   closed trade) was tested on this dev window and FAILS the gates
-//   (dev -$7.36, live +$5.93), so it was not used.
+//   (dev -$7.36, live +$5.93), so it was not used. A narrower re-armed
+//   variant (loosening re-armed, 30-bar fallback still never-traded-gated)
+//   also fails: dev +$10.28, live +$14.26 — both below the +$15 hard rule.
+//   The re-armed design is therefore rejected on measured results, not
+//   assumed; it needs a fresh sweep before anyone submits it.
 //
 // Deterministic: no clock, no environment, no Math.random. All decisions
 // are pure functions of the bars seen so far. Uses only the kit SDK shim
